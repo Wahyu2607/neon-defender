@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Defender - Space Invasion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-wrapper">
+        <!-- Canvas Rendering Area -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Top HUD Elements -->
+        <div id="hud">
+            <div class="hud-group">
+                <span class="hud-title">Health</span>
+                <div class="health-bar-container">
+                    <div id="health-bar-fill"></div>
+                </div>
+                <div style="font-size: 11px; color: #00ffaa; margin-top: 3px; font-weight: bold;">
+                    💣 Bom: <span id="bomb-count">2</span>
+                </div>
+            </div>
+
+            <div class="hud-group" style="text-align: center;">
+                <span class="hud-title">Skor</span>
+                <span id="score-display" class="hud-value">0</span>
+                <span style="font-size: 11px; color: #ff007f; letter-spacing: 1px;">
+                    Wave <span id="wave-display">1</span>
+                </span>
+            </div>
+
+            <div class="hud-controls">
+                <div class="hud-group" style="text-align: right; margin-right: 8px;">
+                    <span class="hud-title">High Score</span>
+                    <span id="high-score" style="font-size: 15px; font-family: monospace; color: #ffcc00; font-weight: bold;">0</span>
+                </div>
+                <button id="mute-btn" class="icon-btn" title="Suara Aktif / Nonaktif">🔊</button>
+                <button id="pause-btn" class="icon-btn" title="Jeda Game">⏸️</button>
+            </div>
+        </div>
+
+        <!-- Active Power-up Badges Container -->
+        <div id="powerup-bar"></div>
+
+        <!-- Mobile Touch Controls -->
+        <div id="touch-controls">
+            <div class="touch-btn" id="touch-bomb-btn">💣 BOM</div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="overlay-screen">
+            <h1 class="game-title">NEON DEFENDER</h1>
+            <p class="game-subtitle">Arcade Space Invasion</p>
+
+            <div class="stats-card">
+                <div class="stats-row">
+                    <span>🏆 Rekor Terbaik</span>
+                    <span id="menu-high-score">0</span>
+                </div>
+                <div class="stats-row">
+                    <span>⚡ Mode Kontrol</span>
+                    <span>Keyboard / Mouse / Touch</span>
+                </div>
+            </div>
+
+            <button id="start-btn" class="primary-btn">Mulai Misi</button>
+
+            <div class="controls-guide">
+                <p><strong>Panduan Kontrol:</strong></p>
+                <p style="margin-top: 5px;">
+                    <span class="key-badge">WASD</span> / <span class="key-badge">Panah</span> atau gerakkan <span class="key-badge">Mouse / Sentuh</span> untuk terbang
+                </p>
+                <p style="margin-top: 3px;">
+                    <span class="key-badge">Spasi</span> / Klik Kiri untuk menembak
+                </p>
+                <p style="margin-top: 3px;">
+                    <span class="key-badge">B</span> atau Klik Kanan untuk melepaskan <span style="color:#00ffaa; font-weight: bold;">Bom EMP</span>
+                </p>
+                <p style="margin-top: 3px;">
+                    <span class="key-badge">P</span> / <span class="key-badge">ESC</span> untuk menjeda
+                </p>
+            </div>
+        </div>
+
+        <!-- Pause Screen -->
+        <div id="pause-screen" class="overlay-screen hidden">
+            <h1 class="game-title" style="font-size: 32px;">GAME DIJEDA</h1>
+            <p class="game-subtitle">Beristirahat sejenak</p>
+            <button id="resume-btn" class="primary-btn">Lanjutkan</button>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="overlay-screen hidden">
+            <h1 class="game-title" style="color: #ff0055; filter: drop-shadow(0 0 20px rgba(255, 0, 85, 0.8));">MISI GAGAL</h1>
+            <p class="game-subtitle">Kapalmu telah hancur!</p>
+
+            <div class="stats-card">
+                <div class="stats-row">
+                    <span>Skor Akhir:</span>
+                    <span id="final-score">0</span>
+                </div>
+                <div class="stats-row">
+                    <span>Wave Tercapai:</span>
+                    <span id="final-wave">1</span>
+                </div>
+            </div>
+
+            <button id="restart-btn" class="primary-btn">Main Lagi</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="audio.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
